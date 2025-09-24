@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe625cf37523e446bb362257aad7367, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  damage: 20
+  ammoUsed: 1
+  fireRate: 500
+  spread: 0.01
+  range: 50
+  reloadTime: 2
+  knockback: 0
+  magSize: 6
+  bulletsPerShot: 1
+  bulletPenetration: 0
+  isAutomatic: 0
+  canReload: 1
+  ammoVisible: 1
+  ammoLeft: 2
+  bulletsShot: 0
+  shotMarker: {fileID: 1036109267001419278, guid: f2e5a898ecbc76443bc224786506f397, type: 3}
+  sprites:
+  - {fileID: 804887171, guid: 8e341ea3eee0c914d8cb48ea0aee881e, type: 3}
+  - {fileID: 1758678997, guid: 8e341ea3eee0c914d8cb48ea0aee881e, type: 3}

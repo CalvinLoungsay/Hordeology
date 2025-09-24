@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe625cf37523e446bb362257aad7367, type: 3}
+  m_Name: Spear
+  m_EditorClassIdentifier: 
+  damage: 60
+  ammoUsed: 1
+  fireRate: 90
+  spread: 0
+  range: 6
+  reloadTime: 0.1
+  knockback: 40
+  magSize: 20
+  bulletsPerShot: 1
+  bulletPenetration: 10
+  isAutomatic: 1
+  canReload: 0
+  ammoVisible: 0
+  ammoLeft: 17
+  bulletsShot: 0
+  shotMarker: {fileID: 0}
+  sprites:
+  - {fileID: 2111381945, guid: 92942a1dba48819488bef15562ae00a4, type: 3}
+  - {fileID: -977394579, guid: 92942a1dba48819488bef15562ae00a4, type: 3}
