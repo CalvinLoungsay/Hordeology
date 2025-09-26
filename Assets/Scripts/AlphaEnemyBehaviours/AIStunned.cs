@@ -41,7 +41,6 @@ public class AIStunned : MonoBehaviour
     }
 
     void ResetStun() {
-        //this.GetComponent<AiAttack>().EnableAttack();
         isStunned = false;
         GetComponent<AIAgent>().setMove(true);
         GetComponent<AIAgent>().setAttack(true);
@@ -57,7 +56,6 @@ public class AIStunned : MonoBehaviour
         stunMarker = Instantiate(stunMarkerObj, aboveEnemy, Quaternion.Euler(0,0,0), null);
         stunMarker.GetComponent<TextMeshPro>().text = "Stunned";
         stunMarker.GetComponent<DecayScript>().decayTime = stunDuration;
-        //this.GetComponent<AiAttack>().DisableAttack();
         isStunned = true;
         GetComponent<AIAgent>().setMove(false);
         GetComponent<AIAgent>().setAttack(false);

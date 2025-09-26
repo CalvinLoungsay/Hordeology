@@ -150,7 +150,6 @@ public class GrabScript : MonoBehaviour
         
         objRB.useGravity = false;
         objRB.constraints = RigidbodyConstraints.FreezeRotationZ;
-        //obj.transform.parent = grabArea;
         Physics.IgnoreCollision(obj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
     }
 
@@ -163,14 +162,9 @@ public class GrabScript : MonoBehaviour
         objRB.velocity = objRB.velocity / 2;
         objRB.angularVelocity += playerRB.angularVelocity;
         objRB.velocity += playerRB.velocity;
-        //float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * cameraForce;
-        //float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * cameraForce;
-        //Vector3 moveDirection = cam.transform.right * mouseX + cam.transform.up * mouseY;
         objRB.useGravity = true;
         objRB.drag = 1;
         objRB.constraints = RigidbodyConstraints.None;  
-        //objRB.AddForce(moveDirection , ForceMode.Acceleration);
-        //obj.transform.parent = null;
         GetComponent<MovementScript>().maxSpeed = playerMaxSpeed;
         GetComponent<MovementScript>().jumpForce = playerJumpForce;
         Physics.IgnoreCollision(obj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
@@ -190,7 +184,6 @@ public class GrabScript : MonoBehaviour
         objRB.drag = 1;
         objRB.constraints = RigidbodyConstraints.None;
         
-        //obj.transform.parent = null;
         GetComponent<MovementScript>().maxSpeed = playerMaxSpeed;
         GetComponent<MovementScript>().jumpForce = playerJumpForce;
         Physics.IgnoreCollision(obj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);

@@ -38,31 +38,20 @@ public class Target : MonoBehaviour, IDamageable
         if (this.gameObject.layer == 10)
         {
             // enemy died
-            //AudioController.aCtrl.GetAudioClip("enemyDie");
             AudioController.aCtrl.GetSound("enemyDie").Play();
         }
 
         if (this.gameObject.tag == "canBeGrabbed")
         {
             // hit box
-            /*
-             for the future work , it should change the large box prefab layer/tag to different to small box prefab layer/tag;
-            thus, it is easier to check large box destroyed or small box destroyed
-             */
-
 
             if (this.gameObject.GetComponent<ObjectDamageScript>() == null)
             {
-                // hit large box -- because largebox does not have ObjectDamageScript attached
-                
-                //AudioController.aCtrl.GetAudioClip("largeBoxDestroy");
                 AudioController.aCtrl.GetSound("largeBoxDestroy").Play();
             }
             else
             {
                 // hit small box
-
-                //AudioController.aCtrl.GetAudioClip("smallBoxDestroy");
                 AudioController.aCtrl.GetSound("smallBoxDestroy").Play();
             }
         }

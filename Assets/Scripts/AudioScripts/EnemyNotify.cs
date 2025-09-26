@@ -18,7 +18,6 @@ public class EnemyNotify : MonoBehaviour
         while(keepPlaying)
         {
             print("PLAYING ENEMY NOTIFY");
-           // AudioController.aCtrl.GetAudioClip("enemyNotify");
             AudioController.aCtrl.GetSound("enemyNotify").Play();
             yield return new WaitForSeconds(timer);
         }

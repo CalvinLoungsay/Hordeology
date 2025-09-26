@@ -43,7 +43,6 @@ public class AiAttack : MonoBehaviour
         if (timer < 0.0f)
         {
             // Check for sight and attack range
-            //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
             cam.transform.LookAt(player.transform);
             if (canAttack) {
                 if (Physics.Raycast(cam.position, cam.forward, out RaycastHit rayHit, attackRange)) {

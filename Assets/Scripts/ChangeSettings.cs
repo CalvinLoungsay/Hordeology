@@ -25,6 +25,5 @@ public class ChangeSettings : MonoBehaviour
     }
 
     void setSens() {
-        //fpCam.GetComponent<FirstPersonCameraScript>().SetSensitivity(2);
     }
 }

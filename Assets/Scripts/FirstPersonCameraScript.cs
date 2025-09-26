@@ -34,8 +34,6 @@ public class FirstPersonCameraScript : MonoBehaviour
     {
         //Mouse inputs
         Vector2 v2 = aim.ReadValue<Vector2>();
-        //float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * cameraSpeed;
-        //float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * cameraSpeed;
         float mouseX = (v2.x / sensitivity) * Time.deltaTime * cameraSpeed;
         float mouseY = (v2.y / sensitivity) * Time.deltaTime * cameraSpeed;
 
