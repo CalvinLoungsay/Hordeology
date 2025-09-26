@@ -109,18 +109,6 @@ public class roundManager : MonoBehaviour
         gameObject.GetComponent<sceneChanger>().ChangeScene("EndScreen"); 
     }
 
-    //void TogglePause() //placeholder for beta test
-    //{
-    //    if (_isPaused == false)
-    //    {
-    //        Time.timeScale = 1;
-    //        _isPaused = true;
-    //    } else
-    //    {
-    //        Time.timeScale = 0;
-    //        _isPaused = false;
-    //    }
-    //}
     void TogglePause() //placeholder for beta test
     {
 
