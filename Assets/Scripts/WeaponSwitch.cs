@@ -56,6 +56,9 @@ public class WeaponSwitch : MonoBehaviour
         }
         timeSinceLastSwitch = 0f;
 
+        //OnWeaponSelected();
     }
 
+    //private void OnWeaponSelected() {
+    //}
 }

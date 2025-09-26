@@ -41,6 +41,7 @@ public class AIStunned : MonoBehaviour
     }
 
     void ResetStun() {
+        //this.GetComponent<AiAttack>().EnableAttack();
         isStunned = false;
         GetComponent<AIAgent>().setMove(true);
         GetComponent<AIAgent>().setAttack(true);

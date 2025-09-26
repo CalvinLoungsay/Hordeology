@@ -28,6 +28,7 @@ public class PostProcessManager : MonoBehaviour
         {
             if(!AudioController.aCtrl.GetSound("playerSounds").isPlaying)
             {
+                //AudioController.aCtrl.GetAudioClip("playerHurt");
                 AudioController.aCtrl.GetSound("playerHurt").Play();
             }
             

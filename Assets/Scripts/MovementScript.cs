@@ -30,6 +30,7 @@ public class MovementScript : MonoBehaviour
     //If can jump
     bool canJump;
     //If can double jump
+    // bool canDoubleJump;
 
     //Horizontal and vertical input  
     float hInput;
@@ -77,6 +78,8 @@ public class MovementScript : MonoBehaviour
         // grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
         //Get movement inputs
         Vector2 v2 = walk.ReadValue<Vector2>();
+        //hInput = Input.GetAxisRaw("Horizontal");
+        //vInput = Input.GetAxisRaw("Vertical");
         hInput = v2.x;
         vInput = v2.y;
 
@@ -109,6 +112,11 @@ public class MovementScript : MonoBehaviour
         }
         
         old_pos = transform.position.x;
+        //Triggers double jump if player can double jump
+        // if(Input.GetKeyDown("space") && canDoubleJump && !grounded) { 
+        //     canDoubleJump = false;
+        //     DoubleJump();
+        // }
     }
 
     void FixedUpdate() {
@@ -132,10 +140,18 @@ public class MovementScript : MonoBehaviour
         }
     }
 
+    //Double jump action
+    // void DoubleJump() {
+    //     rb.velocity = new Vector3(0f, 0f, 0f);
+    //     rb.AddForce(transform.up * jumpForce + (moveDirection * moveSpeed), ForceMode.Impulse);
+    // }
+
     //Jump action
     void Jump(InputAction.CallbackContext obj) {
         // Play Jump sound
         AudioController.aCtrl.GetSound("playerWalking").Stop();
+       // AudioController.aCtrl.GetSound("playerSounds").Play();
+        //AudioController.aCtrl.GetAudioClip("playerJump");
         AudioController.aCtrl.GetSound("playerJumping").Play();
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);

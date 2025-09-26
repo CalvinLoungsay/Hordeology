@@ -18,11 +18,13 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //AudioController.aCtrl.GetSound("bgMusic");
         stats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         roundManager = GameObject.FindWithTag("Round Manager");
         if (stats.gunObject.ammoVisible == true) { _ammoText.text = stats.gunObject.name + "  " + stats.gunObject.ammoLeft.ToString() + " / " + stats.gunObject.magSize.ToString(); } 
         else { _ammoText.text = ""; }
         _score.text = "Score: " + stats.getScore().ToString(); 
+        //_ammoText.text = stats.gunObject.name + "  " + stats.gunObject.ammoLeft.ToString() + " / " + stats.gunObject.magSize.ToString();
         _health.text = "Health: " + stats.getHealth().ToString();
         _wave.text = "Wave: " + stats.getWave().ToString(); 
         _timer.text = "Survive: " + roundManager.GetComponent<roundManager>().GetTime().ToString(); //temp implementation for alpha test

@@ -39,6 +39,11 @@ public class FindPlayer : MonoBehaviour
                     agent.destination = targetTransform.position;
                 }
             }
+        //     float sqDist = (targetTransform.position - agent.destination).sqrMagnitude;
+        //     if(sqDist > maxDist*maxDist)
+        //     {
+        //         agent.destination = targetTransform.position;
+        //     }
             timer = targetUpdateTimer;
         }   
     }

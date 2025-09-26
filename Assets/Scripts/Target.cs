@@ -38,6 +38,7 @@ public class Target : MonoBehaviour, IDamageable
         if (this.gameObject.layer == 10)
         {
             // enemy died
+            //AudioController.aCtrl.GetAudioClip("enemyDie");
             AudioController.aCtrl.GetSound("enemyDie").Play();
         }
 
@@ -54,12 +55,14 @@ public class Target : MonoBehaviour, IDamageable
             {
                 // hit large box -- because largebox does not have ObjectDamageScript attached
                 
+                //AudioController.aCtrl.GetAudioClip("largeBoxDestroy");
                 AudioController.aCtrl.GetSound("largeBoxDestroy").Play();
             }
             else
             {
                 // hit small box
 
+                //AudioController.aCtrl.GetAudioClip("smallBoxDestroy");
                 AudioController.aCtrl.GetSound("smallBoxDestroy").Play();
             }
         }

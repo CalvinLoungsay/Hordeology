@@ -62,6 +62,8 @@ public class AIAgent : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
+        //Instantiate line
+        //enemyAttack = Instantiate(line);
          
     }
 

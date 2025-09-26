@@ -169,7 +169,7 @@ MonoBehaviour:
   - {fileID: 1546396434188523404, guid: 1b873d7ae8ecd954389f0570e6117775, type: 3}
   - {fileID: 1546396434188523404, guid: 1b873d7ae8ecd954389f0570e6117775, type: 3}
   numberOfItemsToDrop: 2
-  percentDropChance: 100
+  percentDropChance: 75
 --- !u!114 &8528347649621736743
 MonoBehaviour:
   m_ObjectHideFlags: 0

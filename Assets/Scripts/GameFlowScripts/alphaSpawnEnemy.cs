@@ -19,7 +19,9 @@ public class alphaSpawnEnemy : MonoBehaviour
         spawnCooldown -= Time.deltaTime;
         if (spawnCooldown <= 0)
         {
+            //Instantiate(enemy, gameObject.transform.position, Quaternion.identity);
             Instantiate(enemy, gameObject.transform);
+            //Instantiate(enemy);
             spawnCooldown = spawnTimer;
         }
     }

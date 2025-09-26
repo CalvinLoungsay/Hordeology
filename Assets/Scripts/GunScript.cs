@@ -12,7 +12,15 @@ public class GunScript : MonoBehaviour
     //Input Actions
     private InputActions inputActions;
     private InputAction primaryFire;
+    //private InputAction secondaryFire;
     private InputAction reload;
+    // public int damage;
+    // public float fireRate, spread, range, reloadTime, knockback;
+    // //public float shotDelay;
+    // public int magSize, bulletsPerShot;
+    // //public int bulletPenetration;
+    // public bool isAutomatic;
+    // int ammoLeft, bulletsShot;
     [SerializeField] public GunObject gunObject;
     [SerializeField] public GunObject meleeObject;
 
@@ -33,10 +41,13 @@ public class GunScript : MonoBehaviour
         weaponSprite = weaponSprites[0];
         //Weapon property initialization
         canShoot = true;
+        // reloading = false;
         grabbing = false;
         //Input Action initialization
         inputActions = new InputActions();
         primaryFire = inputActions.Actions.PrimaryFire;
+        //secondaryFire = inputActions.Actions.SecondaryFire;
+        //reload = inputActions.Actions.Reload;
         inputActions.Enable();
     }
 
@@ -53,10 +64,12 @@ public class GunScript : MonoBehaviour
         {
             if (gunObject.isAutomatic)
             {
+                //shooting = Input.GetKey(KeyCode.Mouse0);
                 primaryFire.performed += AutoWeaponShootingHold;
             }
             else
             {
+                //shooting = Input.GetKeyDown(KeyCode.Mouse0);
                 shooting = primaryFire.triggered;
             }
             if (shooting == true) { Shoot(gunObject); }
@@ -67,11 +80,20 @@ public class GunScript : MonoBehaviour
             if (shooting == true) { Shoot(meleeObject); }
         }
 
+
+        // if the weapon can be reloaded, run the reload function
+        // if (gunObject.canReload == true) { Reload(); }
+        // if the weapon is being shot, run the shoot function
+
     }
     void ResetShot()
     {
         canShoot = true;
     }
+    // void ResetReload() {
+    //     gunObject.ammoLeft = gunObject.magSize;
+    //     reloading = false;
+    // }
 
     //Placeholder animations
     void StartGunAnimation(GunObject obj)
@@ -86,12 +108,35 @@ public class GunScript : MonoBehaviour
             weaponSprite.GetComponent<SpriteScript>().ChangeSprite(1);
             alternateAnimation = true;
         }
+
+        // if (animationOrder) {
+        //     weaponModel1.transform.localRotation = Quaternion.Euler(-20f, 20f, 0f);
+        //     weaponModel1.transform.localPosition = new Vector3(-0.4f,0.1f, 0f);
+        // } else {
+        //     weaponModel2.transform.localRotation = Quaternion.Euler(-20f, -20f, 0f);
+        //     weaponModel2.transform.localPosition = new Vector3(0.4f,0.1f, 0f);
+        // }
         Invoke("StopGunAnimation", 30 / obj.fireRate);
     }
     void StopGunAnimation()
     {
         weaponSprite.GetComponent<SpriteScript>().ChangeSprite(0);
+        // if (animationOrder) {
+        //     weaponModel1.transform.localRotation = Quaternion.Euler(-45f, 20f, 0f);
+        //     weaponModel1.transform.localPosition = new Vector3(-0.4f,-0.1f, 0f);
+        //     animationOrder = false;
+        // } else {
+        //     weaponModel2.transform.localRotation = Quaternion.Euler(-45f, -20f, 0f);
+        //     weaponModel2.transform.localPosition = new Vector3(0.4f,-0.1f, 0f);
+        //     animationOrder = true;
+        // }
     }
+
+    // void StartReloadAnimation() {
+    //     transform.localEulerAngles = new Vector3(0,-40,0);
+    //     CancelInvoke("StopGunAnimation");
+    //     Invoke("StopGunAnimation", gunObject.reloadTime);
+    // }
 
     void ResetGrabbing()
     {
@@ -108,6 +153,19 @@ public class GunScript : MonoBehaviour
     {
         shooting = false;
     }
+
+    // This function reloads the weapon if the player is trying to reload (reload.triggered)
+    // and the weapon has missing ammo to reload (gunObject.ammoLeft < gunObject.magSize) so long
+    // as the player isn't already reloading.
+    // void Reload()
+    // {
+    //     if (reload.triggered && gunObject.ammoLeft < gunObject.magSize && !reloading)
+    //     {
+    //         reloading = true;
+    //         StartReloadAnimation();
+    //         Invoke("ResetReload", gunObject.reloadTime);
+    //     }
+    // }
 
     void Shoot(GunObject obj)
     {
@@ -139,11 +197,13 @@ public class GunScript : MonoBehaviour
                             else if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Floor")
                             {
                                 // hit ground
+                               // AudioController.aCtrl.GetAudioClip("hitGround");
                                 AudioController.aCtrl.GetSound("hitGround").Play();
                             }
                             else if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Metal")
                             {
                                 // hit metal
+                               // AudioController.aCtrl.GetAudioClip("hitMetal");
                                 AudioController.aCtrl.GetSound("hitMetal").Play();
                             }
                             if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Enemy" || LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Object")
@@ -156,6 +216,7 @@ public class GunScript : MonoBehaviour
                                 {
                                     if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Enemy")
                                     {
+                                        //AudioController.aCtrl.GetAudioClip("enemyDamage");
                                         AudioController.aCtrl.GetSound("enemyDamage").Play();
                                     }
                                     if (rayHit.collider.gameObject.tag == "canBeGrabbed")
@@ -164,12 +225,14 @@ public class GunScript : MonoBehaviour
                                         {
                                             // hit large box
                                          
+                                            //AudioController.aCtrl.GetAudioClip("largeBoxHit");
                                             AudioController.aCtrl.GetSound("largeBoxHit").Play();
                                         }
                                         else
                                         {
                                            
                                             // hit small box
+                                            //AudioController.aCtrl.GetAudioClip("smallBoxHit");
                                             AudioController.aCtrl.GetSound("smallBoxHit").Play();
                                         }
                                     }
@@ -213,6 +276,8 @@ public class GunScript : MonoBehaviour
                                     Instantiate(obj.hitParticle, rayHit.point, Quaternion.LookRotation(rayHit.normal), null);
                                 }
                                 break;
+
+                                //shotMarker.transform.SetParent(rayHit.collider.gameObject.transform, true);
                             }
                         }
                         else
@@ -235,16 +300,19 @@ public class GunScript : MonoBehaviour
                         if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Wall")
                         {
                             // hit wall
+                           // AudioController.aCtrl.GetAudioClip("hitWall");
                             AudioController.aCtrl.GetSound("hitWall").Play();
                         }
                         else if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Floor")
                         {
                             // hit ground
+                          //  AudioController.aCtrl.GetAudioClip("hitGround");
                             AudioController.aCtrl.GetSound("hitGround").Play();
                         }
                         else if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Metal")
                         {
                             // hit metal
+                           // AudioController.aCtrl.GetAudioClip("hitMetal");
                             AudioController.aCtrl.GetSound("hitMetal").Play();
                         }
                         if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Enemy" || LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Object")
@@ -258,6 +326,7 @@ public class GunScript : MonoBehaviour
                             {
                                 if (LayerMask.LayerToName(rayHit.collider.gameObject.layer) == "Enemy")
                                 {
+                                    //AudioController.aCtrl.GetAudioClip("enemyDamage");
                                     AudioController.aCtrl.GetSound("enemyDamage").Play();
                                 }
                                 if (rayHit.collider.gameObject.tag == "canBeGrabbed")
@@ -267,12 +336,14 @@ public class GunScript : MonoBehaviour
                                     {
                                         // hit large box
                                       
+                                       // AudioController.aCtrl.GetAudioClip("largeBoxHit"); 
                                         AudioController.aCtrl.GetSound("largeBoxHit").Play();
                                     }
                                     else
                                     {
                                       
                                         // hit small box
+                                        //AudioController.aCtrl.GetAudioClip("smallBoxHit");
                                         AudioController.aCtrl.GetSound("smallBoxHit").Play();
                                     }
                                 }
@@ -316,6 +387,7 @@ public class GunScript : MonoBehaviour
                             {
                                 Instantiate(obj.hitParticle, rayHit.point, Quaternion.LookRotation(rayHit.normal), null);
                             }
+                            //shotMarker.transform.SetParent(rayHit.collider.gameObject.transform, true);
                         }
                     }
                 }

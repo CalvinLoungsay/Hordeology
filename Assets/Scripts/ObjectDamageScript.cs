@@ -17,6 +17,10 @@ public class ObjectDamageScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Placeholder hardcoded values for Beta Test
+        // objectDamage = 60;
+        // objectStunDuration = 5.0f;
+        // damageKnockback = 200.0f;
         origDamage = objectDamage;
         playerObject = GameObject.FindWithTag("Player");
         cam = GameObject.FindWithTag("Camera").GetComponent<CinemachineVirtualCamera>();

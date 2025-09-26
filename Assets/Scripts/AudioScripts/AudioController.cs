@@ -11,6 +11,7 @@ public class AudioController : MonoBehaviour
      */
 
     // Enemy Sound
+    //public AudioSource EnemySounds;
     public AudioSource EnemyDamageSound;
     public AudioSource EnemyDamageSound2;
     public AudioSource EnemyDamageSound3;
@@ -30,10 +31,21 @@ public class AudioController : MonoBehaviour
     public AudioSource hitgroundsound;
     public AudioSource hitwallsound;
 
+
     // Player Sound
     public AudioSource PlayerWalkingSound;
     public AudioSource PlayerJumpingSound;
     public AudioSource PlayerHeartBeatSound;
+
+    //public AudioClip PlayerJumpingSound;
+    //public AudioClip PlayerHeartBeatSound;
+
+    // PlayFist sound
+    //public AudioSource playerFistSound;
+
+
+    private float enemyNotifyCooldown = 5.0f; // 3 seconds cooldown
+    private float lastEnemyNotifyTime = -5.0f; // initialize to allow immediate play
 
 
     // AudioController
@@ -80,11 +92,12 @@ public class AudioController : MonoBehaviour
         }
     }
 
+ 
     public AudioSource GetSound(string sound)
     {
         switch (sound)
         {
-
+            
             //player
             case "playerWalking":
                 return PlayerWalkingSound; 
@@ -108,7 +121,12 @@ public class AudioController : MonoBehaviour
                 }
                 
             case "enemyNotify":
-                return EnemyNotifySound;
+                if (Time.time - lastEnemyNotifyTime >= enemyNotifyCooldown) {
+                    lastEnemyNotifyTime = Time.time;
+                    return EnemyNotifySound;
+                } else {
+                    return null;
+                }
             case "enemySpawn":
                 return EnemySpawnSound;
             case "enemyStun":
@@ -143,6 +161,7 @@ public class AudioController : MonoBehaviour
     private void SetSourceVolume()
     {
         // Enemy sound Volume
+        //EnemySounds.volume = AudioController.aCtrl.GetVolume();
         EnemyDamageSound.volume = AudioController.aCtrl.GetVolume()/5;
         EnemyDamageSound2.volume = AudioController.aCtrl.GetVolume()/5;
         EnemyDamageSound3.volume = AudioController.aCtrl.GetVolume()/5;
@@ -153,6 +172,7 @@ public class AudioController : MonoBehaviour
 
         // Enviroment sound volume
         
+        //bgMusic.volume = AudioController.aCtrl.GetVolume();
         SmallBoxSounds.volume = AudioController.aCtrl.GetVolume();
         LargeBoxSounds.volume = AudioController.aCtrl.GetVolume();
         LargeBoxDestroyedSound.volume = AudioController.aCtrl.GetVolume()/10;
@@ -162,6 +182,7 @@ public class AudioController : MonoBehaviour
         hitwallsound.volume = AudioController.aCtrl.GetVolume();
 
         // Player Sound Volume
+        //PlayerSounds.volume = AudioController.aCtrl.GetVolume();
         PlayerWalkingSound.volume = AudioController.aCtrl.GetVolume()/10;
         PlayerJumpingSound.volume = AudioController.aCtrl.GetVolume()/10;
         PlayerHeartBeatSound.volume = AudioController.aCtrl.GetVolume()/10;

@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163b5c845dc66e147847adce7df59bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healingAmount: 20
+  healingAmount: 15
 --- !u!1 &3005289763403594312
 GameObject:
   m_ObjectHideFlags: 0

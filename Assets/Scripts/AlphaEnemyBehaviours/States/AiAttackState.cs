@@ -24,6 +24,8 @@ public class AiAttackState : State
     {
         
         Shoot(agent); // attack
+        //agent.setAttack(false);
+        //agent.stateMachine.ChangeState(StateId.FindPlayer);
         agent.stateMachine.ChangeState(StateId.AiResetAttack);
     }
     public void Exit(AIAgent agent)
